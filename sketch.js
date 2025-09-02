@@ -8,19 +8,19 @@ function setup() {
 }
 
 function draw() {
-  background(50, 180, 90); // bright green background
+  background(50, 180, 90); 
 
   translate(width / 2, height / 2);
 
-  // Control stage timings
+  
   if (frameCount > 30) stage = 1;
   if (frameCount > 90) stage = 2;
   if (frameCount > 150) stage = 3;
   if (frameCount > 210) stage = 4;
   if (frameCount > 270) stage = 5;
-  if (frameCount > 330) stage = 6; // flower shower stage
+  if (frameCount > 330) stage = 6;
 
-  // Stage 1: Outer zigzag star
+ 
   if (stage >= 1) {
     let t = constrain((frameCount - 30) / 60, 0, 1);
     push();
@@ -30,7 +30,7 @@ function draw() {
     pop();
   }
 
-  // Stage 2: Petals
+  
   if (stage >= 2) {
     let t = constrain((frameCount - 90) / 60, 0, 1);
     push();
@@ -40,7 +40,7 @@ function draw() {
     pop();
   }
 
-  // Stage 3: Rings
+ 
   if (stage >= 3) {
     let t = constrain((frameCount - 150) / 60, 0, 1);
     push();
@@ -51,7 +51,7 @@ function draw() {
     pop();
   }
 
-  // Stage 4: Center segmented circle
+  
   if (stage >= 4) {
     let t = constrain((frameCount - 210) / 60, 0, 1);
     push();
@@ -61,15 +61,15 @@ function draw() {
     pop();
   }
 
-  // Stage 5: Text with pop
+  
   if (stage >= 5) {
     let t = constrain((frameCount - 270) / 40, 0, 1);
     let s = lerp(0.2, 1.2, t);
     if (t === 1) s = 1;
     push();
     scale(s);
-    fill(255, 223, 0); // golden yellow
-    stroke(128, 0, 128); // dark purple outline
+    fill(255, 223, 0); 
+    stroke(128, 0, 128); 
     strokeWeight(3);
     textSize(48);
     textStyle(BOLD);
@@ -77,7 +77,7 @@ function draw() {
     pop();
   }
 
-  // Stage 6: Flower shower
+  
   if (stage >= 6) {
     spawnFlowers();
     for (let i = flowers.length - 1; i >= 0; i--) {
@@ -90,9 +90,7 @@ function draw() {
   }
 }
 
-// ---------------- HELPER FUNCTIONS ----------------
 
-// Draw ring with repeating colors
 function drawRing(r, cols) {
   let n = cols.length;
   strokeWeight(30);
@@ -103,7 +101,6 @@ function drawRing(r, cols) {
   }
 }
 
-// Draw petals around a circle
 function drawPetals(r, count, cols) {
   let step = 360 / count;
   for (let i = 0; i < count; i++) {
@@ -117,7 +114,7 @@ function drawPetals(r, count, cols) {
   }
 }
 
-// Draw center segmented circle
+
 function drawSegmentCircle(r, count, c1, c2) {
   let step = 360 / count;
   for (let i = 0; i < count; i++) {
@@ -127,7 +124,7 @@ function drawSegmentCircle(r, count, c1, c2) {
   }
 }
 
-// Outer zigzag layer
+
 function drawZigzagRing(innerR, outerR, cols) {
   let points = 36;
   let step = 360 / points;
@@ -144,7 +141,7 @@ function drawZigzagRing(innerR, outerR, cols) {
   endShape(CLOSE);
 }
 
-// ---------------- FLOWER SHOWER ----------------
+
 class Flower {
   constructor(x, y, col) {
     this.x = x;
